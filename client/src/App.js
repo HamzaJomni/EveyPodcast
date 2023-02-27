@@ -15,14 +15,3 @@ function App() {
 }
 
 export default App;
-/*
-  <Routes>
-    <Route path="/" element={<Caracteristique />} />
-    <Route path="/podcasts" element={<Podcasts />} />
-    
-  </Routes>
-
-            <Route exact path="/">
-            <Caracteristique />
-          </Route> 
-*/ 
