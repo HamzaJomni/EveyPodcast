@@ -1,54 +1,45 @@
+import { Link } from "react-router-dom"
 
 export default function Footer() {
     return (
-    <>
-    <footer class="footer main">
-            <div class="contact">
-                <details>
-                <summary> <strong style="line-height: 140%;">Mon Adresse:</strong> </summary>
-                <p>Kheireddine</p>
-                <p>7 Run Générale Kheireddine</p>
-                </details>
-                            
-                <details>
-                <summary> <strong style="line-height: 140%;">E-mail:</strong> </summary>
-                <p>jomnihamza@gmail.com</p>		  	
-                </details>
-                            
-                <details>
-                <summary> <strong style="line-height: 140%;">Téléphone:</strong> </summary>
-                <p>+216 54 739 279</p>
-                </details>  
-            </div>
-        
-            <div class="footertab">   
-            <center>   
-                <table border="1" cellpadding="6" cellspacing="4">
-                    <tr>
-                        <td>
-                            <nav>
-                                <a href="#accueil">Accueil</a>
-                                <a href="#a propos">À propos</a>
-                                <a href="#experience">Expériences</a>
-                                <a href="#education">Éducation</a>
-                                <a href="#contact">Contact</a>									
-                            </nav> 
-                        </td>
-                        
-                        <td>
-                            <address id="contact">
-                            <a href="mailto:jomnihamza@gmail.com">contactez-moi</a>
-                            <a href="tel:21654739279">(216)54 739 279</a>
-                            </address>
-                        </td>
-                        
-                        <td>Date de dernière modification 12/07/2022</td>
-                    </tr>
-                </table>
-            </center>
-            </div> 
-    </footer>     
-</>
+        <>
+            <footer> 
+                <section className="footer_section"> 
+
+                    <div className="footer_left_side">
+                        <img src='/logo_white.jpg' id="logo_footer"/>
+                        <p>
+                            A unique platform to listen to original podcasts, and
+                            focus on important or current topics, and not only
+                            that, you can import your own podcasts and that will
+                            be available to all users of the platform !
+                            So don't wait to make a name for yourself, and make
+                            your podcasts stand out.
+                        </p>
+                        <span className="footer_reseau_sociaux">
+                            <img src='/fb_vert.jpg' />
+                            <img src='/youtube_vert.jpg' />
+                            <img src='/linkedin_vert.jpg' />
+                            <img src='/insta_vert.jpg' />
+                        </span>
+                        <div className="copyright">Copyright © 2023 Evey technologies. all rights reserved.</div>
+                    </div>
+                    <span className="useful_links">
+                        <h3>Useful links</h3>
+                        <Link to='/'>Home</Link>
+                        <Link to='/podcasts'>All Podcasts</Link>
+                        <Link to='/contact'>Contact Us</Link>
+                    </span>
+                    <span className="account_links">
+                        <h3>Your Account</h3>
+                        <Link to='/register'>Register</Link>
+                        <Link to='/login'>Log in</Link>
+                       
+                    </span>
+
+                </section> 
+            </footer>     
+        </>
 
 )
 }

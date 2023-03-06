@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "podcast app for evey technologies",
-  "main": "index.js",
+  "main": "api.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node index.js",
-    "dev":"nodemon index.js"
+    "start": "node api.js",
+    "dev": "nodemon api.js"
   },
   "author": "evey",
   "license": "ISC",
@@ -15,6 +15,8 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.20"
+    "mysql2": "^3.1.2",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.29.0"
   }
 }

@@ -7,6 +7,7 @@ export default function Caracteristique() {
     <>
     <Header/>
     <Main_caracteristique/>
+    <Footer/>
     </>
   );
 }
