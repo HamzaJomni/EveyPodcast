@@ -14,16 +14,11 @@ body {
 
 
 
-  /***************************************** header**************************************************/
-.main{
-    margin-bottom: 3%;
-    margin-right: 8%;
-}
+/***************************************** header**************************************************/
 .navbar{
-    
     background-color: white;
     padding-top: 1%;
-    padding-left: 2%;
+    padding-left: 3%;
     height: 70px;
     margin-bottom: 2%;
     box-shadow: 1px 1px 5px 0.1px rgb(165, 165, 165);
@@ -31,145 +26,259 @@ body {
 .links{
   padding-left: 5%;
 }
-.navbar a{
-  color: black; 
+.links a:nth-child(-n+3){
+  background:
+  linear-gradient(
+    to right,
+    rgba(100, 200, 200, 1),
+    rgba(100, 200, 200, 1)
+  ),
+
+  linear-gradient(
+    to right,
+    rgba(255, 0, 0, 1),
+    rgba(255, 0, 180, 1),
+    rgba(0, 100, 200, 1)
+);
+
+background-size: 100% 3px, 0 3px;
+background-position: 100% 100%, 0 100%;
+background-repeat: no-repeat;
+transition: background-size 400ms;
+}
+.links a:hover{
+  background-size: 0 3px, 100% 3px;
+}
+
+.navbar a:nth-child(-n+3){
+  color: inherit; 
   text-decoration: none;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 24px;
-  margin-left: 2%;
-  margin-right: 2%;
+  margin-left: 4%;
   position: relative;
   bottom: 15px;
-  
   }
-
+.search-bar-container{
+  margin-left: 16.5%;
+  position: relative;
+  bottom: 15px;
+}
+.search-bar-container input{
+  padding: 7px;
+  padding-left: 1.2%;
+  padding-right: 2%;
+  border: 1px solid rgb(141, 141, 141);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 0;
+  outline: none;
+}
+.search-bar-container img{
+  width: 17px;
+  position: relative;
+  top: 3px;
+  right: 245%;
+}
+.search-bar-container button{
+  background-color: white;
+  border: 1px solid white;
+}
 #signinbutton{
   border: 1px solid black;
   border-radius: 5px;
-  padding: 7px 20px 7px 20px;
-  font-size: 16px;
+  padding: 7px 27px 7px 27px;
+  font-size: 18px;
   font-weight: 400;
-  margin-left: 40%;
+  margin-left: 1%;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  bottom: 15px;
+  margin-right: 2%;
+}
+#signinbutton:hover{
+  background-color: #057E83;
+  color: white;
+  transition: 0.3s;
+  border: 1px solid #057E83;
 }
 #signupbutton{
   background-color: #057E83;
   color: white;
   border-radius: 5px;
-  padding: 7px 20px 7px 20px;
-  font-size: 16px;
+  padding: 7.5px 22px 7.5px 22px;
+  font-size: 18px;
   font-weight: 400;
   text-align: right;
+  border: 1px solid #057E83;
+  margin-top: -3%;
+  position: relative;
+  bottom: 15px;
 }
-.navbar a:hover{
-      
-  }
+#signupbutton:hover{
+  border: 1px solid black;
+  color: black;
+  transition: 0.3s;
+  background-color: white;
+}
 .logo img{
-  width: 110px;
+  width: 110px; 
+}
+
+.slider img{
+  width: 1160px;
+  height: 550px;
+  border-radius: 15px;
   
 }
+.slider{
+  margin-bottom: 6%;
+}
 /*******************************************Header************************************************/
-/*******************************************************************************************/
+
+/***************************************** footer ***********************************************/
+.footer_section{
+  margin-top: 10%;
+  background-color: #057E83;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+}
+#logo_footer{
+  margin: 11% 0% 0% 63%;
+  width: 150px;
+}
+.footer_section p {
+  font-size: 17px;
+  font-weight: 400;
+  color: white;
+  margin: -1.5% 0% 0% 63%;
+  width: 430px;
+  line-height: 145%;
+}
+.footer_reseau_sociaux{
+  position: relative;
+  left: 56%;
+  width: 600px;
+}
+.footer_reseau_sociaux img{
+  width: 40px;
+  margin-left: 6%;
+  margin-top: 3%;
+}
+.copyright{
+  font-size: 17px;
+  font-weight: 350;
+  color: white;
+  margin: -1.5% 0% 0% 63%;
+  width: 500px;
+  margin-top: 3%;
+}
+.useful_links{
+  display: flex;
+  flex-direction: column;
+  margin: 3.2% 0% 0% 30%;
+  color: white;  
+}
+.useful_links a {
+  color: white;
+  margin-bottom: 30%;
+  font-size: 17px;
+  font-weight: 300;
+}
+.account_links{
+  display: flex;
+  flex-direction: column;
+  margin: 3.2% 0% 0% 10%;
+  color: white;
+}
+.account_links a{
+  color: white;
+  margin-bottom: 30%;
+  font-weight: 300;
+  font-size: 17px;
+}
+/***************************************** footer ***********************************************/
+/**********************************Caractéristique page********************************************/
 .titlesec1{
   font-size: 38px;
-  font-weight: 700;
+  font-weight: 900;
   text-transform: capitalize;
 }
 .descsec1{
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 300;
   line-height: 26px;
 }
 .titlesec2{
   font-size: 38px;
-  font-weight: 700;
+  font-weight: 900;
   
   text-transform: capitalize;
 }
 .descsec2{
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 21px;
+  font-weight: 300;
   line-height: 26px;
 }
 .containertext2{
   width: 500px;
-  margin-top: 2%;
+  margin-top: 6%;
 }
 .titlesec3{
   font-size: 38px;
-  font-weight: 700;
+  font-weight: 900;
   text-transform: capitalize;
 }
 .descsec3{
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 30px;
    
 }
 .descsec3 ul{
   list-style-type: none;
 }
 
-/*******************************************************************************************/
+/*****************************************Caractéristique page**************************************************/
 .lesliste{
-    width: 100%;
-    height:1000%;
+    width: 80%;
     margin-left: 0%;
     padding: 25px;
     background-image: linear-gradient(92.88deg,#158795, #26458a 50%,#350b80);
     border-radius: 50px;
-    height: 105%;
     color: white;
     align-items: center;
     /*justify-content: center;*/
-    margin-left: 2.5%;
+    margin-left: 8.5%;
 }
 .lesliste:hover{
   box-shadow: 14px 14px 5px 1.5px rgba(0, 0, 255, .2);
-  border-radius: 50px;
-  width: 100%;
-  margin-left: 0%;
-  padding: 25px;
-  height: 100%;
   transition: 0.3s;
-  margin-left: 2.5%;
 }
 .lesliste2{
-  width: 1500px;
-  height: 670px;
-  margin-left: 0%;
+  width: 100%;
+  height: 850px;
   padding: 10px;
   background-image: linear-gradient(20.88deg,#26458a, #350b80 50%,#158795);
-  /*background-image: linear-gradient(20.88deg,#350b80, #158795 50%,#350b80);*/
   color: white;
   align-items: center;
   margin-top: 10%;
 }
 .lesliste2:hover{
   box-shadow: 14px 14px 5px 1.5px rgba(0, 0, 255, .2);
-  width: 1500px;
-  margin-left: 0%;
-  padding: 10px;
   transition: 0.3s;
 }
 .lesliste3{
-  width: 100%;
-  height:1000%;
-  margin-left: 0%;
+  width: 90%;
   padding: 25px;
   height: 105%;
   color: black;
   align-items: center;
-  /*justify-content: center;*/
-  margin-left: 2.5%;
+  margin-left: 3.5%;
   margin-top: 9%;
-}
-.lesliste3:hover{
-width: 100%;
-margin-left: 0%;
-padding: 25px;
-height: 100%;
-margin-left: 2.5%;
 }
 .container1{
   display: flex;
@@ -200,146 +309,543 @@ margin-left: 2.5%;
   height: 580px;
 }
 .plateform{
-  box-shadow: 3px 3px whitesmoke, -1em 0 .4em rgb(211, 250, 218); /*rgb(224, 248, 203)*/
+  box-shadow: 3px 3px whitesmoke, 5px 10px 60px rgb(189, 241, 198); /*rgb(224, 248, 203)*/
   margin-right: 5%;
   margin-left: 3%;
+  border-radius: 15px;
 }
-
 .checked img{
   height: 21px;
   width: 21px ;
-  display: block ;
   margin-right: 10px;
   float: left;
+  margin-top: 4px;
+  
 }
-
-/*******************************************Footer************************************************/
-.info{
-    font-size: 120%;
-    color: #ECC488;
-}
-.contact{
-    color: #ECC488;
-}
-.contact p{
-    color: #680082;
-}
-.footertab{
-    border: 3px solid #1A1A40;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.footertab table{
-    width: 100%;
-}
-.footertab a{
-    color: #ECC488; /* #7167f1 */
-    font-size: 21px;
-    margin: 0.3%;
-}
-.footertab a:hover{
-    text-decoration: none;
-    color:#F4A460;
-    text-shadow: 1.2px 1.2px 3px yellow;
-    transition: 0.2s;
-    background-color: rgba(34,12,31, 0.80);
-    padding: 1.1% 0% 1.1% 0%;
-}
-.footertab td{
-    color: #680082;
-}
-  /*****************************************footer**************************************************/
+/*************************************Caractéristique page**************************************/
 
 
-  /*
---mainColor:#3F0E77; background
---mainColorlight:#8D1A90;
---btncolor:#E84481
-*/
-/*---------------------------------------------boutton sign up-----------------------------------------------------*/
-.button-36 {
-  background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
-  border-radius: 8px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  flex-shrink: 0;
-  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+/*****************************************Podacat page**************************************************/
+.podcast_section h2{
+  margin-left: 15.45%;
+  font-size: 24px;
+  font-weight: 900;
+
+}
+
+.podcast_container{
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+margin-bottom: 4%;
+}
+
+.podcast{
+ width: 200px;
+}
+.podcast h4, p {
+  margin: 0px;
+  padding-top: 2%;
+}
+
+.podcast h4 {
   font-size: 16px;
+  font-weight: 900;
+}
+.podcast p {
+  font-size: 16px;
+  font-weight: 0;
+}
+
+.podcast img{
+  width: 180px;
+  border-radius: 15px;
+ }
+ .podcast img:hover{
+  box-shadow: 4px 5px 14px 2px rgb(165, 165, 165);
+  transition: 0.5s;
+}
+
+.topic_links{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0% 15% 4% 14%;
+  
+  
+}
+.topic_section h2{
+  margin-left: 15.45%;
+  font-size: 27px;
+  font-weight: 900;
+}
+.topic_section a {
+  color: black; 
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #E4E4E4;
+  margin: 1% 1% 1.3% 0.5%;
+  padding: 0.9%;
+  border-radius: 15px;
+  box-shadow: 1px 1px 5px 0.1px rgb(165, 165, 165);
+  
+}
+.topic_section a:hover {
+  background-color: #057E83;
+  transition: 0.2s;
+  color: white;
+  
+}
+/*****************************************Podacat page**************************************************/
+
+
+
+/*****************************************Podacats_topic page**************************************************/
+.podcast_topic_section h2{
+  font-size: 24px;
+  font-weight: 900;
+  margin-left: 15.45%;
+}
+
+.podcast_topic_container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0% 11%;
+}
+
+.podcast_topic{
+ width: 200px;
+ margin-bottom: 4%;
+}
+.podcast_topic h4, p, a {
+  margin: 0px;
+  padding-top: 2%;
+  text-decoration: none;
+  color: black;
+}
+
+.podcast_topic h4 {
+  font-size: 16px;
+  font-weight: 900;
+}
+.podcast_topic p {
+  font-size: 16px;
+  font-weight: 0;
+}
+
+.podcast_topic img{
+  width: 180px;
+  border-radius: 15px;
+  
+ }
+
+/*****************************************Podacats_topic page**************************************************/
+
+/*****************************************Podacats_detail page**************************************************/
+#hero_id{
+  width: 100%;
+  margin-bottom: 3%;
+  margin-top: -2%;
+  padding: 0%;
+}
+.links_id a {
+  margin-left: 6%;
+  margin-right: 1%;
+  color: #197073;
+  font-weight: 700;
+}
+.links_id a:hover {
+  color: #D94F1C;
+}
+.links_id span{
+  color: rgb(100, 100, 100);
+}
+.podcast_id_container{
+  display: flex;
+  margin: 4% 0% 0% 6%;
+  
+}
+.podcast_id_container div{
+  margin-left: 2%;
+  width:74%;
+}
+#title_id{
+  font-size: 60px;
+  font-weight: 300;
+  margin-bottom: 2%;
+}
+/*.podcast_id_container p:nth-child(-n+2)
+.podcast_id_container p:nth-child(n+3)*/
+#author_id{
+  color: rgb(100, 100, 100);
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 2%;
+}
+#description_id{
+  font-size: 20px;
+  font-weight: 400;
+}
+
+#image_id{
+  width: 470px;
+  border-radius: 7px;
+  box-shadow: #4cb37ad0 0px 0px 30px;
+}
+#play_id{
+  margin: 2% 0% 0% 1.7%;
+  width: 160px;
+}
+.podcast_id p{
+  margin: 0% 2% 0% 2%;
+  color: #197073;
+  font-size: 20px;
+  font-weight: 900;
+  
+}
+#fb_id{
+  width: 30px;
+  margin: 1.5% 2% 0% 2%;
+}
+#twitter_id{
+  width: 42px;
+}
+
+.tracks_section h3{
+  font-size: 60px;
+  font-weight: 300;
+  margin-top: 4%;
+  margin-left: 5.5%;
+}
+.theline {
+  background-image: linear-gradient(to bottom, rgba(200, 200, 200, 0.281) 50%, transparent 0%);
+  background-size: 100% 1px;
+  background-position: 0 30px;
+  height: 2px;
+  margin-bottom: 3%;
+}
+
+.track{
+  margin: 0 calc(40px + 3%); 
+}
+.track_container{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 3%;
+  
+}
+#mic_icon_track{
+  width: 30px;
+  margin-left: 0%;
+}
+.track_info{
+  margin-left: 2.5%;
+  margin-right: 55%;
+}
+.track_info h4{
+  font-size: 35px;
+  font-weight: 350;
+  margin: 0%;
+  width: 220%;
+
+}
+.track_info p:nth-child(-n+2){
+  font-size: 19px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.521);
+  margin-top: -0.6%;
+  
+}
+.track_info p:nth-child(n+3){
+  font-size: 16.5px;
+  font-weight: 600;
+  margin: 0%;
+  margin-top: -0.6%;
+  width: 250%;
+}
+#play_track{
+  width: 140px;
+  
+  /*position: absolute;
+  right: 10%;*/
+}
+/*****************************************Podacats_detail page**************************************************/
+
+/*****************************************Podacats_search result page**************************************************/
+#the_result{
+margin-left: 15.3%;
+margin-bottom: 2.5%;
+}
+/*****************************************Podacats_search result page**************************************************/
+
+/***************************import_podcast and import_track pages (il on quasiment le meme style)********************************/
+.form_podcast{
+  margin: 0 calc(40px + 15%); 
+}
+.form_podcast h2{
+  margin-top: 9%;
+  margin-bottom: 4%;
+  font-size: 32px;
+  font-weight: 900;
+}
+.form_podcast h3{
+  font-size: 26.5px;
   font-weight: 500;
-  height: 3.5rem;
-  padding: 0 1.6rem;
+  color: #6F6F6F;
+}
+.theline_form {
+  background-image: linear-gradient(to bottom, rgba(200, 200, 200, 0.281) 50%, transparent 0%);
+  background-size: 100% 1px;
+  background-position: 0 30px;
+  height: 2px;
+  margin-bottom: 3%;
+  margin-right: 30%;
+}
+.titlesection{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.titlesection label{
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 3%;
+}
+.titlesection input{
+  height: 42px;
+  border: 2px solid #00000025;
+  font-size: 21px;
+  font-weight: 300;
+  font-weight: 0;
+  outline: none;
+  padding-left: 2.5%;
+}
+
+.description_section{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.description_section label{
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 3%;
+  margin-top: 6%;
+}
+.description_section textarea{
+  height: 150px;
+  border: 2px solid #00000025;
+  font-size: 21px;
+  font-weight: 300;
+  font-weight: 0;
+  outline: none;
+  padding-left: 2.5%;
+  padding-top: 2%;
+  font-family: 'Lato', sans-serif;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.author_section{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-top: 5%;
+}
+.author_section label{
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 3%;
+}
+.author_section input{
+  height: 42px;
+  border: 2px solid #00000025;
+  font-size: 21px;
+  font-weight: 300;
+  font-weight: 0;
+  outline: none;
+  padding-left: 2.5%;
+}
+
+#import_topic_title{
+  margin-top: 10%;
+}
+.import_topic_section{
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  margin-top: 5%;
+}
+.import_topic_section label{
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 3%;
+}
+.import_topic_section select{
+  height: 42px;
+  border: 2px solid #00000025;
+  font-size: 21px;
+  font-weight: 300;
+  font-weight: 0;
+  outline: none;
+  padding-left: 2.5%;
+  color: rgba(0, 0, 0, 0.603);
+  
+}
+#import_podcast_bottom{
+  margin-top: 5%;
+  margin-right: 4%;
+  outline: none;
+  padding: 0;
+  border: none;
+  background: none;
+  padding: 2%;
+  background-color: #D94F1C;
+  color: white;
+  padding: 15px 22px 15px 22px;
+  font-size: 21px;
+  font-weight: 400;
+  border-radius: 5px;
+  border: 1px solid #D94F1C;
+}
+
+#import_podcast_bottom:hover{
+  border: 1px solid black;
+  color: black;
+  transition: 0.3s;
+  background-color: white;
+}
+.success_message{
+  background-color: #027C68;
+  color: white;
+  padding: 15px 22px 15px 22px;
+  font-size: 21px;
+  font-weight: 400;
+  border-radius: 5px;
+  width: 30%;
   text-align: center;
-  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
-  transition: all .5s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  }
-
-  .button-36:hover {
-  box-shadow: rgba(80, 63, 205, 1) 0 6px 40px;
-  transition-duration: .1s;
-  }
-
-  @media (min-width: 768px) {
-  .button-36 {
-      padding: 0 2.5rem;
-  }
-  }
-/*---------------------------------------------boutton sign up-----------------------------------------------------*/
-
-/*---------------------------------------------boutton sign in-----------------------------------------------------*/
-  .button-64 {
-    align-items: center;
-    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-    border: 0;
-    border-radius: 8px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: inline-flex;
-    margin-left: 40px;
-    font-family: Phantomsans, sans-serif;
-    font-size: 18px;
-    justify-content: center;
-    line-height: 1em;
-    max-width: 100%;
-    min-width: 140px;
-    padding: 3px;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    cursor: pointer;
-  }
+  margin-top: 5%;
+}
+.uploadbutton_container{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 13%;
+}
+.imagePodcast_section{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  float: right;
+  border: 1px solid rgb(160, 160, 160);
+  box-shadow: #b4b4b4d0 0px 0px 30px;
+  border-radius: 15px;
+  height: 450px;/*380px*/
+  width: 300px;
+  padding: 3%;
+  margin-right: -8%;
+  margin-top: -12%;
+}
+.imagePodcast_section:hover{
+  box-shadow: #d94e1c8e 0px 0px 20px;
+  border: 1px solid #d94e1c8e;
+  transition: 0.5s;
+}
+.imagePodcast_section h4{
+  color: rgb(146, 146, 146);
+  margin-top: -0%;
+  font-size: 26px;
+  font-weight: 300;
+}
+.imagePodcast_section h4:hover{
+  color: #d94e1c8e;
+}
+.imagePodcast_section input{
+  vertical-align:bottom;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 8%;
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: white;
   
-  .button-64:active,
-  .button-64:hover {
-    outline: 0;
-  }
-  
-  .button-64 span {
-    background-color: rgb(5, 6, 45);
-    padding: 14px 0px 14px 0px;
-    border-radius: 6px;
-    width: 100%;
-    height: 100%;
-    transition: 300ms;
-  }
-  
-  .button-64:hover span {
-    background: none;
-  }
-  
-  @media (min-width: 768px) {
-    .button-64 {
-      font-size: 22px;
-      min-width: 136px;
-    }
-  }
-/*---------------------------------------------boutton sign in-----------------------------------------------------*/
-
+}
+.imagePodcast_section input[type="file"]::-webkit-file-upload-button {
+  /*visibility: hidden;*/
+  color: black;
+  outline: none;
+  border: none;
+  background: none;
+  padding: 12px 18px 12px 18px;
+  font-size: 21px;
+  font-weight: 400;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-left: 13%;
+}
+.imagePodcast_section input[type="file"]::-webkit-file-upload-button:hover {
+  color: #D94F1C;
+  border: 1px solid #D94F1C;
+  transition: 0.3s;
+}
+.imagePodcast_section img{
+  width: 300px;
+  height: 300px;
+  border-radius: 7px;
+  box-shadow: #d94e1c8e 0px 0px 20px;
+}
+/********import audio track section*******/
+.importAudio_section{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid rgba(156, 156, 156, 0.575);
+  box-shadow: #c7c7c7d0 0px 0px 15px;
+  height: 135px;/*380px*/
+  width: 520px;
+  padding: 3%; 
+}
+.importAudio_section:hover{
+  box-shadow: #d94e1c5d 0px 0px 15px;
+  border: 1px solid #d94e1c8e;
+  transition: 0.5s;
+}
+.importAudio_section h4{
+  color: rgb(146, 146, 146);
+  margin-top: -0%;
+  font-size: 26px;
+  font-weight: 300;
+}
+.importAudio_section h4:hover{
+  color: #D94F1C;
+}
+.importAudio_section input{
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  margin-left: 8%;
+  margin-top: 0.5%;
+}
+.importAudio_section input[type="file"]::-webkit-file-upload-button {
+  /*visibility: hidden;*/
+  color: black;
+  outline: none;
+  border: none;
+  background: none;
+  padding: 12px 18px 12px 18px;
+  font-size: 21px;
+  font-weight: 400;
+  border-radius: 5px;
+  border: 1px solid black;
+  text-align: center;
+}
+.importAudio_section input[type="file"]::-webkit-file-upload-button:hover {
+  color: #D94F1C;
+  border: 1px solid #D94F1C;
+  transition: 0.3s;
+}
+/********import audio track section*******/
+/***********************import_podcast and import_track pages (il on quasiment le meme style)***************************/
