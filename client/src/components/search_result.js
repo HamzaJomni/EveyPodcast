@@ -45,8 +45,10 @@ function SearchResult() {
          <div className='podcast_topic_container'>
             {results.map(result => (
               <div className='podcast_topic' key={result.id}>
-                <Link to={`/podcast/${result.id}`}><img src='/podcast_image1.jpeg' />
-                <h4>{result.title}</h4></Link>
+                <Link to={`/podcast/${result.id}`}>
+                  <img src={result.imageUrl} />
+                  <h4>{result.title}</h4>
+                </Link>
                 <p>{result.author}</p>
               </div>
             ))}

@@ -62,8 +62,10 @@ function Podcasts_topic(props) {
                     <div className='podcast_topic_container'>
                         {topics.map(topic => (   
                           <div className='podcast_topic' key={topic.id} > 
-                            <Link to={`/podcast/${topic.id}`}><img src='/podcast_image1.jpeg' />
-                            <h4>{topic.title}</h4></Link>
+                            <Link to={`/podcast/${topic.id}`}>
+                              <img src={topic.imageUrl} />
+                              <h4>{topic.title}</h4>
+                            </Link>
                             <p>{topic.author}</p>  
                           </div>  
                         ))}

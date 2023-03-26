@@ -1,3 +1,5 @@
+//import dotenv from 'dotenv';
+//dotenv.config();
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from "./header";
@@ -5,86 +7,22 @@ import Footer from "./footer";
 import Slider from "./slider";
 import { Link } from "react-router-dom"
 
+// Accès aux variables d'environnement définies dans le fichier .env
+//const host = process.env.host;  || 'http://localhost:5000/'
+
 function Podcasts() {
-  const [podcasts, setPodcasts] = useState([]);
-  const [News, setNews] = useState([]);
-  const [Economy, setEconomy] = useState([]);
-  const [technologies, setTechnologie] = useState([]);
-  const [Startup, setStartup] = useState([]);
-  const [Government, setGovernment] = useState([]);
-  const [History, setHistory] = useState([]);
+  const [Podcasts, setPodcasts] = useState([]);
+
 
   useEffect(() => {
-    axios.get('http://localhost:5000/podcast/podcasts')
+    axios.get('http://localhost:5000/podcast/podcasts') // `${host}podcast/podcasts`
       .then(response => {
         setPodcasts(response.data);
       })
       .catch(error => {
         console.log(error);
       });
-  }, []);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/podcast/podcasts/News & Politics')
-      .then(response => {
-        setNews(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/podcast/podcasts/Economy and Business')
-      .then(response => {
-        setEconomy(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/podcast/podcasts/technologie')
-      .then(response => {
-        setTechnologie(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/podcast/podcasts/Start-up')
-      .then(response => {
-        setStartup(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/podcast/podcasts/Government')
-      .then(response => {
-        setGovernment(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/podcast/podcasts/History')
-      .then(response => {
-        setHistory(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
-  
+  }, []); 
 
   return (
     <div>
@@ -109,6 +47,7 @@ function Podcasts() {
           <Link to='/allPodcasts/Society & Culture'>Society & Culture</Link>
           <Link to='/allPodcasts/Religion & Spirituality'>Religion & Spirituality</Link>
           <Link to='/allPodcasts/Other'>Other</Link>
+          <Link to='/imageUploader'>test</Link>
         </div>   
       </section>
 
@@ -116,68 +55,80 @@ function Podcasts() {
 
         <h2>News & Politics</h2>
           <div className='podcast_container'>
-              {News.map(news => (
-                <div className='podcast' key={news.id}> 
-                  <Link to={`/podcast/${news.id}`}><img src='/podcast_image1.jpeg' />
-                  <h4>{news.title}</h4></Link>
-                  <p>{news.author}</p>  
-                </div>  
-              ))}
+            {Podcasts.filter(podcast => podcast.topic === 'News & Politics').slice(0, 6).map(podcast => (
+              <div className='podcast' key={podcast.id}> 
+                <Link to={`/podcast/${podcast.id}`}>
+                  <img src={podcast.imageUrl} />
+                  <h4>{podcast.title}</h4>
+                </Link>
+                <p>{podcast.author}</p>  
+              </div>  
+            ))}
           </div>
-
+  
         <h2>Economy and Business</h2>
-          <div className='podcast_container'>
-              {Economy.map(economy => (
-                <div className='podcast' key={economy.id}> 
-                  <Link to={`/podcast/${economy.id}`}><img src='/podcast_image1.jpeg' />
-                  <h4>{economy.title}</h4></Link>
-                  <p>{economy.author}</p>  
-                </div>  
-              ))}
+        <div className='podcast_container'>
+            {Podcasts.filter(podcast => podcast.topic === 'Economy and Business').slice(0, 6).map(podcast => (
+              <div className='podcast' key={podcast.id}> 
+                <Link to={`/podcast/${podcast.id}`}>
+                  <img src={podcast.imageUrl} />
+                  <h4>{podcast.title}</h4>
+                </Link>
+                <p>{podcast.author}</p>  
+              </div>  
+            ))}
           </div>
 
           <h2>Technology</h2>
           <div className='podcast_container'>
-              {technologies.map(technologie => (
-                <div className='podcast' key={technologie.id}> 
-                  <Link to={`/podcast/${technologie.id}`}><img src='/podcast_image1.jpeg' />
-                  <h4>{technologie.title}</h4></Link>
-                  <p>{technologie.author}</p>  
-                </div>  
-              ))}
+            {Podcasts.filter(podcast => podcast.topic === 'Technologie').slice(0, 6).map(podcast => (
+              <div className='podcast' key={podcast.id}> 
+                <Link to={`/podcast/${podcast.id}`}>
+                <img src={podcast.imageUrl} />
+                  <h4>{podcast.title}</h4>
+                </Link>
+                <p>{podcast.author}</p>  
+              </div>  
+            ))}
           </div>
 
           <h2>Start-up</h2>
           <div className='podcast_container'>
-              {Startup.map(startup => (
-                <div className='podcast' key={startup.id}> 
-                  <Link to={`/podcast/${startup.id}`}><img src='/podcast_image1.jpeg' />
-                  <h4>{startup.title}</h4></Link>
-                  <p>{startup.author}</p>  
-                </div>  
-              ))}
+            {Podcasts.filter(podcast => podcast.topic === 'Start-up').slice(0, 6).map(podcast => (
+              <div className='podcast' key={podcast.id}> 
+                <Link to={`/podcast/${podcast.id}`}>
+                  <img src={podcast.imageUrl} />
+                  <h4>{podcast.title}</h4>
+                </Link>
+                <p>{podcast.author}</p>  
+              </div>  
+            ))}
           </div>
 
           <h2>Government</h2>
           <div className='podcast_container'>
-              {Government.map(government => (
-                <div className='podcast' key={government.id}> 
-                  <Link to={`/podcast/${government.id}`}><img src='/podcast_image1.jpeg' />
-                  <h4>{government.title}</h4></Link>
-                  <p>{government.author}</p>  
-                </div>  
-              ))}
+            {Podcasts.filter(podcast => podcast.topic === 'Government').slice(0, 6).map(podcast => (
+              <div className='podcast' key={podcast.id}> 
+                <Link to={`/podcast/${podcast.id}`}>
+                  <img src={podcast.imageUrl} />
+                  <h4>{podcast.title}</h4>
+                </Link>
+                <p>{podcast.author}</p>  
+              </div>  
+            ))}
           </div>
 
           <h2>History</h2>
           <div className='podcast_container'>
-              {History.map(history => (
-                <div className='podcast' key={history.id}> 
-                  <Link to={`/podcast/${history.id}`}><img src='/podcast_image1.jpeg' />
-                  <h4>{history.title}</h4></Link>
-                  <p>{history.author}</p>  
-                </div>  
-              ))}
+            {Podcasts.filter(podcast => podcast.topic === 'History').slice(0, 6).map(podcast => (
+              <div className='podcast' key={podcast.id}> 
+                <Link to={`/podcast/${podcast.id}`}>
+                  <img src={podcast.imageUrl} />
+                  <h4>{podcast.title}</h4>
+                </Link>
+                <p>{podcast.author}</p>  
+              </div>  
+            ))}
           </div>
         
       </section>

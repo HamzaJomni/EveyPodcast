@@ -2,94 +2,38 @@
  const app = express();
  const cors = require('cors');
  const bodyParser = require('body-parser');
+ require('dotenv').config();
  const { sequelize } = require('./src/database/model/podcast'); // Importer l'objet sequelize
- const Podcast = require('./src/database/model/podcast').Podcast; // Importer le modèle Podcast
- const { Op } = require('sequelize');
  const podcastRouter = require('./src/routes/podcast.route');
- const port = process.env.PORT || 5000;
+ const trackRouter = require('./src/routes/track.route');
+ const userRouter=require('./src/routes/user.route');
+ const cookieParser=require("cookie-parser");
+ require("./src/auth/authGoogle");
+ const passport=require("passport");
+ const session=require("express-session");
+ const port = process.env.port || 5000;
 
 
- app.use(cors());
+ app.use(cors({ origin: 'http://localhost:3000',
+ credentials: true}));
+
  app.use(express.json());
  app.use(bodyParser.urlencoded({ extended: true }));
-
-
- app.use('/podcast', podcastRouter);
- /*-----------------------------LES REQUETES--------------------------------*/
- /*
- // Route pour récupérer tous les podcasts
- app.get('/podcasts', async (req, res) => {
-   try {
-     const podcasts = await Podcast.findAll();
-     res.json(podcasts);
-   } catch (err) {
-     console.error(err);
-     res.status(500).send('Erreur serveur');
-   }
- });
-
-// Route pour récupérer 6 podcasts d'un topic
-app.get('/podcasts/:topic', (req, res) => {
-  const { topic } = req.params;
-
-  Podcast.findAll({
-    where: { topic },
-    limit: 6,
-  })
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.send(error);
-    });
-});
-
-
-// Route pour récupérer tous les podcasts d'un topic
-app.get('/allPodcasts/:topic', (req, res) => {
-  const { topic } = req.params;
-
-  Podcast.findAll({
-    where: { topic },
-  })
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.send(error);
-    });
-});
-
-// Route pour récupérer un podcast d'un id donnée
-app.get('/podcast/:podcast_id', async (req, res) => {
-  const podcastId = req.params.podcast_id;
-  try {
-    const podcastData = await Podcast.findOne({ where: { id: podcastId } });
-    res.json(podcastData);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Une erreur est survenue lors de la récupération du podcast.');
-  }
-});
-
-// Route pour recherche des podcasts selon le nom ou l'auteur
-app.get('/search/:searchTerm', async (req, res) => {
-  const searchQuery = req.params.searchTerm;
-  const podcasts = await Podcast.findAll({
-    where: {
-      [Op.or]: [
-        { title: { [Op.like]: `%${searchQuery}%` } },
-        { author: { [Op.like]: `%${searchQuery}%` } },
-      ]
-    }
-  });
-  res.json(podcasts);
-});
-*/
- /*-----------------------------LES REQUETES--------------------------------*/
+ app.use(cookieParser());
+ app.use(session({
+  secret: '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',
+  resave: false,
+  saveUninitialized: false,
+  maxAge: 2*24*60*60*1000,
+}));
+ app.use(passport.initialize());
+ app.use(passport.session());
  
+ app.use('/users',userRouter);
+ app.use('/podcast', podcastRouter);
+ app.use('/track', trackRouter);
+
+ app.use(cors());
 
  // Synchronisation des modèles avec la base de données
  sequelize.sync().then(() => {
@@ -102,3 +46,4 @@ app.get('/search/:searchTerm', async (req, res) => {
    console.error('Impossible de synchroniser la base de données :', err);
  });
  
+ module.exports = app

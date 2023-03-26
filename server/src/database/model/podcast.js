@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
-const { Sequelize } = require('sequelize');
 const sequelize = require('../index.js');
+
 
 // Tester la connexion à la base de données
 try {
@@ -10,32 +10,57 @@ try {
     console.error('Impossible de se connecter à la base de données:', error);
 }
 
+//3 collonnes images (petit, moyen, grand) (crop outil),  
 
 // Modèle de la table Podcasts
 const Podcast = sequelize.define('podcast', {
     title: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     description: {
-        type: DataTypes.TEXT,
-        allowNull: false
+      type: DataTypes.TEXT,
+      allowNull: false
     },
     author: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
-    duration: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+    topic: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
-    topic:{
-        type: Sequelize.STRING,
-        allowNull: false
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    imageUrl: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
+  }, {
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
 });
 
-sequelize.sync(); // Cette ligne synchronise les modèles avec la base de données
+Podcast.associate = function(models) {
+  Podcast.hasMany(models.Track, { as: 'tracks' });
+  Podcast.belongsTo(models.User, { foreignKey: 'userId' });
+};
 
+  
+
+// Synchronise les modèles avec la base de données
+async function syncModels() {
+    try {
+      await sequelize.sync();
+      console.log('Models synchronized successfully');
+    } catch (error) {
+      console.error('Error synchronizing models:', error);
+    }
+  }
+  
+  syncModels();
 
 module.exports = { sequelize, Podcast };

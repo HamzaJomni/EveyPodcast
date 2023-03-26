@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { FiSearch } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
 function SearchBar() {

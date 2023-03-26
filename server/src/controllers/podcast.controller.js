@@ -1,9 +1,13 @@
 const Podcast = require('../database/model/podcast').Podcast; // Importer le modèle Podcast
 const { Op } = require('sequelize');
+const s3 = require('../aws/aws-config');
+const fs = require('fs');
+const rimraf = require('rimraf');
+
 
 // Route pour récupérer tous les podcasts
 async function getAllPodcasts(req, res) {
-    try {
+    try { 
       const podcasts = await Podcast.findAll();
       res.json(podcasts);
     } catch (err) {
@@ -71,10 +75,61 @@ const podcasts = await Podcast.findAll({
 res.json(podcasts);
 }
 
+//création d'un podcast
+async function postPodcast(req, res) {
+  const { title, description, author, topic, imageUrl } = req.body;
+  try {
+    const newPodcast = await Podcast.create({
+      title,
+      description,
+      author,   
+      topic,
+      imageUrl
+    });
+    res.json(newPodcast);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Erreur serveur');
+  }
+}
+
+
+// route exportation et importation d'une image vers aws s3
+async function postImagePodcast(req, res) {
+  try {
+    const fileContent = fs.readFileSync(req.file.path);
+
+    const params = {
+      Bucket: "evey-podcasts",
+      Key: 'podcast_images/' + Date.now() + '-' + req.file.originalname,
+      Body: fileContent,
+      ACL: 'public-read',
+    };
+
+    const data = await s3.upload(params).promise();
+    console.log(`File uploaded successfully. ${data.Location}`);
+
+    // envoi l'URL du fichier téléchargé à votre interface React
+    res.send({ url: data.Location });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ error: err.message });
+  }
+/*
+    // Supprime le dossier temporaire de Multer
+    rimraf(req.file.path, (err) => {
+      if (err) console.error(err);
+      console.log(`File removed from temporary storage. ${req.file.path}`);
+    });*/
+}
+
+
 module.exports = {
     getAllPodcasts,
     getSixPodcastsByTopic,
     getAllPodcastsByTopic,
     getPodcastById,
-    searchPodcasts
+    searchPodcasts,
+    postPodcast,
+    postImagePodcast
 };
