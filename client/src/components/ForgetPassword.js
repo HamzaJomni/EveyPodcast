@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Header from './header';
 import axios from 'axios';
-import '../log.css';
-import evey from '../evey.jpg';
+import '../lib/style/log.css';
+import evey from '../lib/img/evey.jpg';
 
 function ForgetPassword() {
   const [email, setEmail] = useState('');

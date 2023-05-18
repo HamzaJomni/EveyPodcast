@@ -1,8 +1,8 @@
 import React, { useState ,useEffect} from 'react';
 import Header from './header';
 import axios from 'axios';
-import '../log.css';
-import evey from '../evey.jpg';
+import '../lib/style/log.css';
+import evey from '../lib/img/evey.jpg';
 import { useParams } from 'react-router-dom'; // Importez useParams 
 function ResetPassword() {
   const [password, setPassword] = useState('');

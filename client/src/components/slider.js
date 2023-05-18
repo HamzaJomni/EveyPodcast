@@ -5,12 +5,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const images = [
-  { id: 1, src: "/slider6.png" },
-  { id: 2, src: "/slider5.webp" },
-  { id: 3, src: "/slider4.jpg" },
-  { id: 4, src: "/slider3.png" },
-  { id: 5, src: "/slider2.jpg" },
-  { id: 6, src: "/slider1.png" }
+  { id: 1, src: "/slidour11.jpg" },
+  { id: 2, src: "/slidour12.jpg" },
+  { id: 3, src: "/slidour15.jpg" },
+  { id: 4, src: "/slidour14.jpg" },
+  { id: 5, src: "/slidour13.png" },
+  { id: 6, src: "/slidour16.jpg" }
 ];
 
 class SliderComponent extends Component {

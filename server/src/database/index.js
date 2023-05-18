@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 
 require('dotenv').config();
 
-const db = process.env.db || 'evey';
+const db = process.env.db || 'evey'; /*eveytest*/
 const user = process.env.user || 'root';
 const password = process.env.password || '12345';
 const host = process.env.host || 'localhost';

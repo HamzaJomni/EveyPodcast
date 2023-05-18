@@ -3,10 +3,33 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Header from "./header";
 import { Link } from "react-router-dom"
+import Navbarclient from './navbarclient';
 
 function SearchResult() {
   const { searchTerm } = useParams();
   const [results, setResults] = useState([]);
+
+  const [profile, setProfile] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchUserProfile() {
+      try {
+        const result = await axios.get('http://localhost:5000/users/user/profile', {
+          withCredentials: true,
+        });
+        if (result.data.success) {
+          setProfile(result.data.user);
+        } else {
+          setError('Failed to get profile');
+        }
+      } catch (err) {
+        console.error(err);
+        setError('Failed to get profile');
+      }
+    }
+    fetchUserProfile();
+  }, []);
 
   useEffect(() => {
     axios.get(`http://localhost:5000/podcast/search/${searchTerm}`)
@@ -20,7 +43,7 @@ function SearchResult() {
 
   return (
     <>
-      <Header/>
+      {profile ? <Navbarclient/> : <Header/>}
       <section className='topic_section'>
       <h2>Best podcast topics</h2>
           <span className="topic_links">
@@ -43,7 +66,7 @@ function SearchResult() {
       </section>
           <h2 id='the_result'>The Result :</h2>
          <div className='podcast_topic_container'>
-            {results.map(result => (
+            {results.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map(result => (
               <div className='podcast_topic' key={result.id}>
                 <Link to={`/podcast/${result.id}`}>
                   <img src={result.imageUrl} />

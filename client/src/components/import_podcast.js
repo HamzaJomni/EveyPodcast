@@ -1,47 +1,43 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Header from "./header";
 import { useNavigate } from 'react-router-dom';
-import AWS from 'aws-sdk';
 import { createObjectURL } from 'url';
+import Navbarclient from './navbarclient';
+import { Navigate } from 'react-router-dom'; 
 
 function ImportPodcast() {
-  /*********************************aws s3 image export**************** */
   const [file, setFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
-
-  const handleFileChange = (event) => {
-    const newFile = event.target.files[0];
-    setFile(newFile);
-    setFileUrl(URL.createObjectURL(newFile));
-  };
-
-  const handleUploadClick = async () => {
-    try {
-      // Créer un nouvel objet FormData pour envoyer le fichier aux backend
-      const formData = new FormData();
-      formData.append('image', file);
-
-      // Envoyer la requête HTTP POST à l'endpoint `/uploadPodcastImage`
-      const response = await axios.post('http://localhost:5000/podcast/uploadPodcastImage', formData);
-
-      // Stocker l'URL de l'image dans l'état `imageUrl`
-      setImageUrl(response.data.url);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  /********************************aws s3 image export***************** */
-
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [author, setAuthor] = useState('');
   const [topic, setTopic] = useState('News & Politics');
   const [successMessage, setSuccessMessage] = useState('');
+  const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const [profile, setProfile] = useState(null);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    async function fetchUserProfile() {
+      try {
+        const result = await axios.get('http://localhost:5000/users/user/profile', {
+          withCredentials: true,
+        });
+        if (result.data.success) {
+          setProfile(result.data.user);
+        } else {
+          setError('Failed to get profile');
+        }
+      } catch (err) {
+        console.error(err);
+        setError('Failed to get profile');
+      }
+    }
+    fetchUserProfile();
+  }, []);
+  
   const topics = [
     'News & Politics',
     'Economy and Business',
@@ -63,31 +59,86 @@ function ImportPodcast() {
     setTopic(event.target.value);
   }
 
+  const handleDescriptionChange = (event) => {
+    const description = event.target.value;
+    const isValid = !/^\d+$/.test(description) && description.length <= 500;
+    setDescription(description);
+  
+    if (!isValid) {
+      setDescription('');
+      return;
+    }    
+  };
+  
+  const handleFileChange = (event) => {
+    const newFile = event.target.files[0];
+    setFile(newFile);
+    setFileUrl(URL.createObjectURL(newFile));
+  };
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true); // activer le chargement
+    /*
+    //validateur si titre et non vide et qu'il contient des lettres et des chiffres et dépasse pas < 25 carac 
+    if (title && !title.match(/^\d+$/) && title.length <= 25) {
+      // Le titre est valide
+    } else {
+      // Le titre n'est pas valide
+    }
 
-    const podcastData = { title, description, author, topic, imageUrl };
-    
-  try {
-    const response = await axios.post('http://localhost:5000/podcast/newPodcast', podcastData);
+    if (description && !description.match(/^\d+$/) && description.length <= 500) {
+      // La description est valide
+    } else {
+      // La description n'est pas valide
+    }
+    */
+    try {
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('author', profile.name);
+      formData.append('topic', topic);
+      formData.append('userId', profile.id);
+      formData.append('image', file);
+  
+      const response = await axios.post('http://localhost:5000/podcast/newPodcast', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent) => {
+          setProgress(Math.round((progressEvent.loaded / progressEvent.total) * 100));
+        },
+      });
+
       console.log(response.data);
       setSuccessMessage('Podcast created successfully!');
       setTitle('');
       setDescription('');
-      setAuthor('');
       setTopic('');
-      /*setTimeout(() => {
-        navigate('/Podcasts'); // redirection vers la page des podcasts
-      }, 2000);*/ // redirection après 2 secondes
+      setFile(null);
+      setIsLoading(false); // désactiver le chargement
+      setTimeout(() => {
+        navigate(`/mypodcast/${profile.id}`);
+      }, 2000);
     } catch (error) {
       console.error(error);
     }
-};
+  };
 
+  if (error) {
+    // Rediriger l'utilisateur vers la page d'accueil s'il y a une erreur
+    return <Navigate to="/" />; 
+  }
+
+  if (!profile) {
+    // Si l'utilisateur n'a pas encore été chargé, on affiche un message de chargement
+    return <div>Loading...</div>;
+  } 
 
   return (
     <>
-    <Header/>
+    <Navbarclient/>
 
     <form onSubmit={handleSubmit} className='form_podcast'>
         <h2>Add New Podcast</h2>
@@ -96,24 +147,20 @@ function ImportPodcast() {
 
       <div className='titlesection'>
         <label htmlFor="title">Title</label>
-        <input type="text" id="title" value={title} placeholder="Enter the podcast title please..." onChange={(event) => setTitle(event.target.value)} required />
+        <input type="text" id="title" value={title} placeholder="Enter the podcast title please..." onChange={(event) => setTitle(event.target.value)} pattern="^(?!\d+$).{1,25}$" required />
+        <p className="title_validateur">25 characters maximum and not only digits</p>
       </div>
 
       <div className='imagePodcast_section'> 
         <h4>IMAGE ART</h4>
         {fileUrl && <img src={fileUrl} alt="Podcast Image" />}
-        <input type="file" accept="image/*" onChange={handleFileChange} />  
+        <input type="file" accept="image/*" onChange={handleFileChange} required/>  
       </div>
-  
 
       <div className='description_section'>
         <label htmlFor="description">Description</label>
-        <textarea id="description" value={description} placeholder="Enter the description podcast please..." onChange={(event) => setDescription(event.target.value)} required />
-      </div>
-
-      <div className='author_section'>
-        <label htmlFor="author">Author Name</label>
-        <input type="text" id="author" value={author} placeholder="This will be gone when we create author profile..." onChange={(event) => setAuthor(event.target.value)} required />
+        <textarea id="description" value={description} placeholder="Enter the podcast description please..." onChange={handleDescriptionChange} required/>
+        <p className="Description_validateur">500 characters maximum and not only digits</p>
       </div>
 
       <h3 id='import_topic_title'>PODCAST TOPICS</h3>
@@ -131,7 +178,19 @@ function ImportPodcast() {
       </div>
 
       <div className='uploadbutton_container'>
-        <button type="submit" id='import_podcast_bottom' onClick={handleUploadClick}>Save Podcast</button>
+        <button type="submit" id='import_podcast_bottom' disabled={isLoading}>
+        {isLoading ? 'Loading...' : 'Save Podcast'} 
+      </button>
+      {isLoading &&
+      <section>
+        <div>
+          <progress value={progress} max="100" />
+          {progress}%
+
+        </div>
+         <div className='loading_wheel'><span class="loader"></span></div>
+         </section>
+         }
         {successMessage && <div className='success_message'>{successMessage}</div>}
       </div>
     </form>

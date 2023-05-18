@@ -18,7 +18,7 @@ export default function Main_caracteristique() {
                 </span>
             </div>
 
-            <div className="hero">< img src='/hero39.png' /></div>  
+            <div className="hero">< img src='/hero40.png' /></div>  
         </section>    
 
         <section class="lesliste2 container2">
@@ -33,11 +33,11 @@ export default function Main_caracteristique() {
                 </span>
             </div>
 
-        <div className="premium">< img src='/premium.png' /></div>  
+        <div className="premium">< img src='/hero42.png' /></div>  
         </section> 
 
         <section class="lesliste3 container3">
-            <div className="plateform">< img src='./plateform.png' /></div> 
+            <div className="plateform">< img src='./hero41.png' /></div> 
             
             <div className="containertext3">
                 <span className="titlesec3">Free podcasting website, podcast scheduling, Integrated podcast player, Easy sharing on social networks</span>

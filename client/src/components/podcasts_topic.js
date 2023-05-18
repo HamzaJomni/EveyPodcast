@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from "./header";
 import { Link } from "react-router-dom"
 import { useParams } from "react-router-dom";
+import Navbarclient from './navbarclient';
 
 
 function Podcasts_topic(props) {
@@ -20,10 +21,31 @@ function Podcasts_topic(props) {
   }, [topic]); // mettre à jour les topics lorsque le sujet dans l'URL change
   
   let topicc = null; // variable pour stocker le topic
+
+  const [profile, setProfile] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/users/user/profile', {
+        withCredentials: true,
+      })
+      .then((result) => {
+        if (result.data.success) {
+          setProfile(result.data.user);
+        } else {
+          setError('Failed to get profile');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setError('Failed to get profile');
+      });
+  }, []);
     
     return (
         <div>
-          <Header/>
+        {profile ? <Navbarclient/> : <Header/>}
 
             <section className='topic_section'>
             <h2>Best podcast topics</h2>
@@ -60,7 +82,7 @@ function Podcasts_topic(props) {
         
                     
                     <div className='podcast_topic_container'>
-                        {topics.map(topic => (   
+                        {topics.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map(topic => (   
                           <div className='podcast_topic' key={topic.id} > 
                             <Link to={`/podcast/${topic.id}`}>
                               <img src={topic.imageUrl} />

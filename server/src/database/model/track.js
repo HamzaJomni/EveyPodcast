@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../index');
-
+/*
 // Tester la connexion à la base de données
 try {
     sequelize.authenticate();
@@ -8,7 +8,7 @@ try {
   } catch (error) {
     console.error('Impossible de se connecter à la base de données:', error);
 }
-
+*/
 //pist url
 // Modèle de la table track
 const Track = sequelize.define('track', {
@@ -27,7 +27,15 @@ const Track = sequelize.define('track', {
     trackUrl: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    nbView: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+  },
+  listeningTime: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0
+  },
   }, {
     timestamps: true,
     createdAt: 'created_at',

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom"
-import profileimg from "../pro.jpg";
-import edit from '../edit.png';
-import logout from "../log-out.png";
-import help from "../help.png";
-import inbox from "../inbox.png";
-import user1 from "../user.png"
-import settings from "../setting.png"
-import '../dropdownmenu.css';
+import profileimg from "../lib/img/pro.jpg";
+import edit from '../lib/img/edit.png';
+import logout from "../lib/img/log-out.png";
+import help from "../lib/img/help.png";
+import inbox from "../lib/img/inbox.png";
+import user1 from "../lib/img/user.png"
+import settings from "../lib/img/setting.png"
+import '../lib/style/dropdownmenu.css';
 import axios from 'axios';
 import React, {useState, useEffect, useRef} from 'react';
 
@@ -30,8 +30,11 @@ export default function Dropdownmenu() {
   useEffect(()=>{
       axios.get('http://localhost:5000/users/user/profile',{
           withCredentials: true,
-        }).then((result)=>{console.log(result);setProfile(result.data.user)}).catch((err)=>{console.log(err,12)});
+        }).then((result)=>{/*console.log(result)*/;setProfile(result.data.user)}).catch((err)=>{console.log(err,12)});
   },[])
+
+
+  
     const [open, setOpen] = useState(false);
 
     let menuRef = useRef();
@@ -40,7 +43,7 @@ export default function Dropdownmenu() {
       let handler = (e)=>{
         if(!menuRef.current.contains(e.target)){
           setOpen(false);
-          console.log(menuRef.current);
+          /*console.log(menuRef.current);*/
         }      
       };
   
@@ -56,19 +59,19 @@ export default function Dropdownmenu() {
     
         <div className='menu-container' ref={menuRef}>
         <div className='menu-trigger' onClick={()=>{setOpen(!open)}}>
-          <img src={profile.picture}></img>
+          {/*<img src={profile.picture}></img>*/}
+          <img src='/user1.png' alt="evey_logo" />
         </div>
 
         <div className={`dropdown-menu ${open? 'active' : 'inactive'}`} >
-          <h3>Client Name<br/><span>Best Podcaster</span></h3>
+          <h3>{profile.name}<br/><span>Personal Space</span></h3>
           <ul>
-            <DropdownItem img = {profile.picture} lien={"/profile"} text = {"My Profile"}/>
-            <DropdownItem img = {edit} lien={"/profile"}  text = {"Edit Profile"}/>
+            <DropdownItem img = '/user1.png' lien={"/profile"} text = {"Profile"}/>
+            <DropdownItem img = '/mic.png' lien={`/mypodcast/${profile.id}`}  text = {"My Podcasts"}/>
            
-            <DropdownItem img = {settings}  lien={"/profile"} text = {"Settings"}/>
-            <DropdownItem img = {help} lien={"/profile"} text = {"Helps"}/>
-            <DropdownItem img = {logout} lien={"/profile"}  text = {"Logout"} />
-            <button onClick={handleLogout}>Logout</button>
+            <DropdownItem img = '/playlist.png'  lien={`/myplaylists/${profile.id}`} text = {"My Playlists"}/>
+            <DropdownItem img = '/dashboard3.png' lien={"/dashboard"} text = {"Dashboard"}/>
+            <DropdownItem img = {logout} lien={"/profile"}  text = {<button onClick={handleLogout}>Logout</button>} />
             
           </ul>
         </div>

@@ -7,6 +7,9 @@
  const podcastRouter = require('./src/routes/podcast.route');
  const trackRouter = require('./src/routes/track.route');
  const userRouter=require('./src/routes/user.route');
+ const playlistRouter=require('./src/routes/playlist.route');
+ const playlist_podcast_Router=require('./src/routes/playlist_podcast.route');
+ const reportRouter=require('./src/routes/report.route');
  const cookieParser=require("cookie-parser");
  require("./src/auth/authGoogle");
  const passport=require("passport");
@@ -32,6 +35,9 @@
  app.use('/users',userRouter);
  app.use('/podcast', podcastRouter);
  app.use('/track', trackRouter);
+ app.use('/playlist', playlistRouter);
+ app.use('/playlist_podcast', playlist_podcast_Router);
+ app.use('/report',reportRouter);
 
  app.use(cors());
 

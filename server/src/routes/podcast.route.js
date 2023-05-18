@@ -22,11 +22,31 @@ router.get('/podcast/:podcast_id', podcastcontroller.getPodcastById);
 // Route pour recherche des podcasts selon le nom ou l'auteur
 router.get('/search/:searchTerm', podcastcontroller.searchPodcasts);
 
-// création d'un podcast
-router.post('/newPodcast', podcastcontroller.postPodcast);
+// exportation et importation d'une image vers aws s3 et création d'un podcast
+router.post('/newPodcast', upload.single('image'), podcastcontroller.postPodcast);
 
-// exportation et importation d'une image vers aws s3
-router.post('/uploadPodcastImage', upload.single('image'), podcastcontroller.postImagePodcast);
+// Route pour supprimer un podcast et tout les tracks associé à sont id
+router.delete('/deletePodcast/:podcast_id', podcastcontroller.deletePodcast);
 
+// Route pour modifier les données d'un podcast, et sa couverture dans aws
+router.put('/editPodcast/:podcast_id', upload.single('image'), podcastcontroller.updatePodcast);
+
+// route pour stocker le nombre de vue  d'un podcast donnee 
+router.post('/podcasts/:id/view',podcastcontroller.countView);
+
+//route pour la recherche avance 
+router.get('/search/:dateFilter/:themeFilter',podcastcontroller.getSearchPodcast);
+
+//route  pour tester la pagination 
+router.get('/data',podcastcontroller.getdata);
+
+//route pour compter le nombre de podcast 
+router.get('/count',podcastcontroller.countPodcasts);
+
+//route pour bloquer debloquer un podcast 
+router.put("/block_podcast/:id",podcastcontroller.handleBlock)
+
+//retrieve most viewed podcasts 
+router.get('/most-viewed-podcasts',podcastcontroller.getMostViewdPodcaasts);
 
 module.exports = router;
