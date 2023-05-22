@@ -2,20 +2,14 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.addColumn('users', 'GoogleId', {
-      type: Sequelize.STRING,
-      allowNull: true,
-    });
-
-    await queryInterface.addColumn('users', 'picture', {
+    await queryInterface.addColumn('podcasts', 'playlistId', {
       type: Sequelize.STRING,
       allowNull: true,
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn('users', 'GoogleId');
-    await queryInterface.removeColumn('users', 'picture');
+    await queryInterface.removeColumn('podcasts', 'playlistId');
   }
 };
 

@@ -1,0 +1,293 @@
+.containerlog{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+    
+}
+.signup-box{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 1px 1px 5px 0.1px rgb(165, 165, 165);
+  height: 100%;
+  background: #fff;
+}
+.col-1,.col-2{
+    flex-basis: 50%;
+    
+}
+.col-1 img{
+    width: 100%;
+    height: 578px;
+    object-fit: cover;
+    display: block; 
+    box-shadow: 1px 1px 5px 0.1px rgb(165, 165, 165); 
+     
+}
+.col-2{
+    
+    padding: 40px 8%;
+    color: #333;
+    min-width: 350px;
+    
+}
+.col-2 h2{
+    font-weight: 600;
+}
+col-2 span{
+    font-size: 12px;
+}
+#log {
+    color:#009688;
+    font-weight: 500;
+}
+.google-link{
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 4px;
+   border:1px solid #009688;
+    color: #555;
+    font-size: 13px;
+    margin: 20px 0;
+    
+   
+}
+.google-link img{
+    width: 20px;
+    margin-right: 10px;
+   
+}
+.col-2 h4{
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.input-field{
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #009688;
+    outline: none;
+    display: block;
+    width: 100%;
+    margin: 5px 0 10px;
+}
+form label {
+    font-weight: 600;
+    font-size: 12px;
+}
+.row{
+    display: flex;
+    align-items: center;
+}
+.row input{
+    margin-right:6px;
+}
+.col-2 button{
+    width: 106.7%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #009688;
+    outline: none;
+    display: block;
+    margin: 18px 0 10px;
+    background-color: #009688;
+    color: white;
+    cursor: pointer;
+}
+
+
+#delete{
+    width: 60px;
+    margin-left: 100px;
+
+}
+
+.containerprofile{
+ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+}
+#profileimage{
+    border-radius: 50%;
+    margin-right: 30px;
+    margin-left: -50px;
+}
+#googlebtn{
+    background: #fff;
+    color: black;
+}
+#h{
+   margin-left: 50px;
+   color: red;
+   
+}
+#register_button{
+    margin-top: 14%;
+}
+
+
+/*Design administrateur tableau */
+
+table {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+    margin-top: 50px;
+   
+  }
+  
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  .btn-block {
+    background-color: #dc3545;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .btn-block:hover {
+    background-color: #d22f3a;
+  }
+
+
+  /* style de report pop d'un podcast */
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .popup-content h3 {
+    margin-top: 0;
+  }
+  
+  .popup-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .popup-content label {
+    margin-bottom: 10px;
+    display: block;
+    text-align: left;
+  }
+  
+  .popup-content select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .popup-content button {
+    background-color: #009688;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .popup-content .close-btn {
+    background-color: transparent;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  
+  /* Css du comosante reports */
+  .table-container {
+    margin-top: 30px;
+    overflow-x: auto;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 800px;
+    table-layout: fixed;
+    
+  }
+  
+  thead th {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tbody td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .author-header {
+  
+    color: #c66a14;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
+  .author-group {
+    margin-bottom: 20px;
+  }

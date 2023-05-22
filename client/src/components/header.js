@@ -10,11 +10,16 @@ export default function Header() {
     <header>
      <div>  
         <nav className="navbar">   
-            <span className="logo"><img src='/logo.png' alt="evey_logo" /></span>
+            <span className="logo">
+            <Link to='/podcasts'>
+                <img src='/logo.png' alt="evey_logo" />
+            </Link> 
+            </span>
+
             <span className="links">
                 <Link to='/'>Home</Link>
                 <Link to='/podcasts'>Podcasts</Link>
-                <Link to='/newPodcast'>Discover</Link>
+                <Link to='/Contact-Us'>Contact-Us</Link>
                 <SearchBar/> 
                 <Link to='/sign-in' id="signinbutton">Log In</Link> 
                 <Link to='/sign-up'id="signupbutton">Sign Up</Link>

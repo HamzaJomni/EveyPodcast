@@ -1,6 +1,6 @@
 import React from "react";
-import notfound from '../pageerror.png';
-import '../log.css';
+import notfound from '../lib/img/pageerror.png';
+import '../lib/style/log.css';
 function PageNotFound(){
     return (
     <div>

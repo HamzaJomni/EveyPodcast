@@ -10,8 +10,6 @@ try {
     console.error('Impossible de se connecter à la base de données:', error);
 }
 
-//3 collonnes images (petit, moyen, grand) (crop outil),  
-
 // Modèle de la table Podcasts
 const Podcast = sequelize.define('podcast', {
     title: {
@@ -37,7 +35,21 @@ const Podcast = sequelize.define('podcast', {
     imageUrl: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    playlistId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    status: {
+      type: DataTypes.ENUM('active', 'blocked'), 
+      defaultValue: 'active', 
+      allowNull: false
+    },
+    views: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false
+    },
   }, {
     timestamps: true,
     createdAt: 'created_at',
@@ -47,6 +59,8 @@ const Podcast = sequelize.define('podcast', {
 Podcast.associate = function(models) {
   Podcast.hasMany(models.Track, { as: 'tracks' });
   Podcast.belongsTo(models.User, { foreignKey: 'userId' });
+  Podcast.belongsTo(models.Playlist, { foreignKey: 'playlistId' });
+  Podcast.hasMany(models.Report, { as: 'report' });
 };
 
   

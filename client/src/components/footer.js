@@ -17,10 +17,12 @@ export default function Footer() {
                             your podcasts stand out.
                         </p>
                         <span className="footer_reseau_sociaux">
-                            <img src='/fb_vert.jpg' />
-                            <img src='/youtube_vert.jpg' />
-                            <img src='/linkedin_vert.jpg' />
-                            <img src='/insta_vert.jpg' />
+                        <a href="https://www.facebook.com/eveytechnologies"><img src='/fb_vert.jpg' /></a>
+                        <a href="https://www.instagram.com/eveytechnologies/"><img src='/insta_vert.jpg' /></a>
+                        <a href="https://www.linkedin.com/company/evey-technologies/"><img src='/linkedin_vert.jpg' /></a>
+                        <a href="https://www.youtube.com/channel/UCYwSBG5ErVJUzLFQ-P4K6FA"><img src='/youtube_vert.jpg' /></a>
+                        
+                            
                         </span>
                         <div className="copyright">Copyright © 2023 Evey technologies. all rights reserved.</div>
                     </div>
@@ -28,12 +30,12 @@ export default function Footer() {
                         <h3>Useful links</h3>
                         <Link to='/'>Home</Link>
                         <Link to='/podcasts'>All Podcasts</Link>
-                        <Link to='/contact'>Contact Us</Link>
+                        <Link to='/Contact-Us'>Contact Us</Link>
                     </span>
                     <span className="account_links">
                         <h3>Your Account</h3>
-                        <Link to='/register'>Register</Link>
-                        <Link to='/login'>Log in</Link>
+                        <Link to='/sign-up'>Register</Link>
+                        <Link to='/sign-in'>Log in</Link>
                        
                     </span>
 

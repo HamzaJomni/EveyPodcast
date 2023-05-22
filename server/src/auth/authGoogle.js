@@ -21,6 +21,12 @@ passport.use(new GoogleStrategy({
         console.log("Error signing up",err);
         cb(err,null);
      });
+
+     // Vérifier le statut de l'utilisateur
+     if (user && user[0] && user[0].status === 'blocked') {
+      return cb(null, false, { message: "Vous êtes bloqué. Veuillez contacter l'administrateur pour plus d'informations." });
+    }
+
      if(user && user[0]) return cb(null, user && user[0])
   }));
   //serialisation de l'utlisateur stocker ses info dans session 

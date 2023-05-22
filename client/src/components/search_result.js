@@ -3,10 +3,33 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Header from "./header";
 import { Link } from "react-router-dom"
+import Navbarclient from './navbarclient';
 
 function SearchResult() {
   const { searchTerm } = useParams();
   const [results, setResults] = useState([]);
+
+  const [profile, setProfile] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchUserProfile() {
+      try {
+        const result = await axios.get('http://localhost:5000/users/user/profile', {
+          withCredentials: true,
+        });
+        if (result.data.success) {
+          setProfile(result.data.user);
+        } else {
+          setError('Failed to get profile');
+        }
+      } catch (err) {
+        console.error(err);
+        setError('Failed to get profile');
+      }
+    }
+    fetchUserProfile();
+  }, []);
 
   useEffect(() => {
     axios.get(`http://localhost:5000/podcast/search/${searchTerm}`)
@@ -20,11 +43,11 @@ function SearchResult() {
 
   return (
     <>
-      <Header/>
+      {profile ? <Navbarclient/> : <Header/>}
       <section className='topic_section'>
       <h2>Best podcast topics</h2>
           <span className="topic_links">
-          <Link to='/allPodcasts/News & Politics'>News & Politics</Link>
+          <Link to='/allPodcasts/News and Politics'>News and Politics</Link>
           <Link to='/allPodcasts/Economy and Business'>Economy and Business</Link>
           <Link to='/allPodcasts/Technologie'>technologie</Link>
           <Link to='/allPodcasts/Start-up'>Start-up</Link> 
@@ -34,16 +57,16 @@ function SearchResult() {
           <Link to='/allPodcasts/Sport And Leisur'>Sport And Leisur</Link>
           <Link to='/allPodcasts/Health And Wellness'>Health And Wellness</Link>
           <Link to='/allPodcasts/Companies And Tunisia'>Companies And Tunisia</Link>
-          <Link to='/allPodcasts/Arts & Culture'>Arts & Culture</Link>
-          <Link to='/allPodcasts/Tv & Films'>Tv & Films</Link>
-          <Link to='/allPodcasts/Society & Culture'>Society & Culture</Link>
-          <Link to='/allPodcasts/Religion & Spirituality'>Religion & Spirituality</Link>
+          <Link to='/allPodcasts/Arts and Culture'>Arts and Culture</Link>
+          <Link to='/allPodcasts/Tv and Films'>Tv and Films</Link>
+          <Link to='/allPodcasts/Society and Culture'>Society and Culture</Link>
+          <Link to='/allPodcasts/Religion and Spirituality'>Religion and Spirituality</Link>
           <Link to='/allPodcasts/Other'>Other</Link>
           </span>   
       </section>
           <h2 id='the_result'>The Result :</h2>
          <div className='podcast_topic_container'>
-            {results.map(result => (
+            {results.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map(result => (
               <div className='podcast_topic' key={result.id}>
                 <Link to={`/podcast/${result.id}`}>
                   <img src={result.imageUrl} />

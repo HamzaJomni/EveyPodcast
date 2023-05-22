@@ -1,9 +1,12 @@
 import React, { useState ,useEffect} from 'react';
 import Header from './header';
 import axios from 'axios';
-import '../log.css';
-import evey from '../evey.jpg';
+import '../lib/style/log.css';
+import evey from '../lib/img/evey.jpg';
 import { useParams } from 'react-router-dom'; // Importez useParams 
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function ResetPassword() {
   const [password, setPassword] = useState('');
 
@@ -17,8 +20,10 @@ function ResetPassword() {
         password: password,
       });
       console.log(response.data);
+      toast.success('Successfully reset password!');
     } catch (error) {
       console.error(error);
+      toast.error('Error on reset password');
     }
   };
 
@@ -46,6 +51,7 @@ function ResetPassword() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 }

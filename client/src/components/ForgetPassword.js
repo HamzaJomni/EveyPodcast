@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Header from './header';
 import axios from 'axios';
-import '../log.css';
-import evey from '../evey.jpg';
+import '../lib/style/log.css';
+import evey from '../lib/img/evey.jpg';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ForgetPassword() {
   const [email, setEmail] = useState('');
@@ -14,8 +17,10 @@ function ForgetPassword() {
         email: email,
       });
       console.log(response.data);
+      toast.success('Email for reset password was send successfully!');
     } catch (error) {
       console.error(error);
+      toast.error('Error on sending email for reset password.');
     }
   };
   
@@ -44,7 +49,9 @@ function ForgetPassword() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
+    
   );
 }
 
